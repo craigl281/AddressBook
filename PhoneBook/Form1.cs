@@ -45,11 +45,15 @@ namespace PhoneBook
 
         private void button3_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = null;
-            _ListContacts.Add(new Contact());
-            bindingSource1.DataSource = _ListContacts;
-            dataGridView1.DataSource = bindingSource1;
-            bindingSource1.MoveLast();
+            dataGridView1.DataSource = null;            ///Datagrids are gay, and you need to make datasource null
+                                                        ///before you can bring in a new datasource;
+                                                        ///also, why isn't it autoupdating the information like it should be?
+                                                        ///the binding is already attached and should have knew it was updated
+                                                        ///
+            _ListContacts.Add(new Contact());           ///Creates a new contact
+            bindingSource1.DataSource = _ListContacts;  ///updates this
+            dataGridView1.DataSource = bindingSource1;  ///reads in the binding
+            bindingSource1.MoveLast();                  ///moves to the new contact
         }
     }
 
