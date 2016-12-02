@@ -23,13 +23,20 @@ namespace PhoneBook
 
         private void button1_Click(object sender, EventArgs e)
         {
+            ///First lets alpha sort our contacts list.  Or we can sort by something else if wanted
             _ListContacts.Sort((l, r) => 1 * l.Name.CompareTo(r.Name));
+            ///Create a Json text representation with indents for easy reading.  Of our list of objects
             var File = JsonConvert.SerializeObject(_ListContacts, Formatting.Indented);
+            ///Write that text into a file
+            ///I could always error handle for permissions
             System.IO.File.WriteAllText(@"C:\AddressBook.txt", File);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ///Tries to load in the addressbook file
+            ///If it doesn't exist or errors out, creates a dummy 
+            ///Then if it does load in to our variable, it'll plant that into our list of objects
             try
             {
                 var File = System.IO.File.ReadAllText(@"C:\AddressBook.txt");
