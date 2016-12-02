@@ -42,6 +42,15 @@ namespace PhoneBook
 
             bindingSource1.DataSource = _ListContacts;                       ///Update Binding Source with our save file
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = null;
+            _ListContacts.Add(new Contact());
+            bindingSource1.DataSource = _ListContacts;
+            dataGridView1.DataSource = bindingSource1;
+            bindingSource1.MoveLast();
+        }
     }
 
     public class Contact
