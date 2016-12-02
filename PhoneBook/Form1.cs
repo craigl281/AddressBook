@@ -45,6 +45,7 @@ namespace PhoneBook
 
         private void button3_Click(object sender, EventArgs e)
         {
+            /*
             dataGridView1.DataSource = null;            ///Datagrids are gay, and you need to make datasource null
                                                         ///before you can bring in a new datasource;
                                                         ///also, why isn't it autoupdating the information like it should be?
@@ -54,6 +55,8 @@ namespace PhoneBook
             bindingSource1.DataSource = _ListContacts;  ///updates this
             dataGridView1.DataSource = bindingSource1;  ///reads in the binding
             bindingSource1.MoveLast();                  ///moves to the new contact
+             */
+            bindingSource1.AddNew();                    ///Knew it was only one line I needed, sometimes smart people overthink shit
         }
     }
 
