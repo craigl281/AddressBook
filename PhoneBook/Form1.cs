@@ -65,6 +65,20 @@ namespace PhoneBook
              */
             bindingSource1.AddNew();                    ///Knew it was only one line I needed, sometimes smart people overthink shit
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ///Cancels changes
+            bindingSource1[bindingSource1.Position] = _Contact;
+        }
+
+        private void bindingSource1_PositionChanged(object sender, EventArgs e)
+        {
+            ///Place Current Data into temp holder
+            var tempholder = (Contact)bindingSource1.Current;
+            ///Create temp holder incase we want to cancel
+            _Contact = new Contact(tempholder.Name, tempholder.Address1, tempholder.City, tempholder.State, tempholder.Zip, tempholder.Phone);
+        }
     }
 
     public class Contact
