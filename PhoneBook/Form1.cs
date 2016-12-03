@@ -23,8 +23,14 @@ namespace PhoneBook
 
         private void button1_Click(object sender, EventArgs e)
         {
+            _Contact = (Contact)bindingSource1.Current;
+            string Name = ((Contact)bindingSource1.Current).Name;
             ///First lets alpha sort our contacts list.  Or we can sort by something else if wanted
             _ListContacts.Sort((l, r) => 1 * l.Name.CompareTo(r.Name));
+            ///resets datagrid
+             bindingSource1.ResetBindings(false);
+            ///Keeps position on contact you just saved
+             bindingSource1.Position = bindingSource1.IndexOf(_Contact);       
             ///Create a Json text representation with indents for easy reading.  Of our list of objects
             var File = JsonConvert.SerializeObject(_ListContacts, Formatting.Indented);
             ///Write that text into a file
@@ -64,6 +70,7 @@ namespace PhoneBook
             bindingSource1.MoveLast();                  ///moves to the new contact
              */
             bindingSource1.AddNew();                    ///Knew it was only one line I needed, sometimes smart people overthink shit
+            textBox1.Focus();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -79,6 +86,7 @@ namespace PhoneBook
             ///Create temp holder incase we want to cancel
             _Contact = new Contact(tempholder.Name, tempholder.Address1, tempholder.City, tempholder.State, tempholder.Zip, tempholder.Phone);
         }
+
     }
 
     public class Contact
